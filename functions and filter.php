@@ -49,11 +49,11 @@ list.
 
         ];
 
-        function filterByPublished($books, $published) {
+        function filterByPublished($books,$operator, $published) {
            $filteredBooks = [];
 
            foreach ($books as $book) {
-            if ($book['published'] === $published) {
+            if (eval("$book['published'] $operator $published")) {
                 $filteredBooks[] = $book;
             }
            }
@@ -62,7 +62,7 @@ list.
 
     ?>
     <ul>
-        <?php foreach (filterByPublished($books, >= 2000) as $book) : ?> //di sya naggagana na irog sadi ang filter
+        <?php foreach (filterByPublished($books, '>=', 2000) as $book) : ?> //di sya naggagana na irog sadi ang filter
           
         <li>
                 <a href="<?= $book['wiki']; ?>"> 
