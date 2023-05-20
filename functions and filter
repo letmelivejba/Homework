@@ -62,7 +62,7 @@ list.
 
     ?>
     <ul>
-        <?php foreach (filterByPublished($books, >= 2000) as $book) : ?>
+        <?php foreach (filterByPublished($books, >= 2000) as $book) : ?> //di sya naggagana na irog sadi ang filter
           
         <li>
                 <a href="<?= $book['wiki']; ?>"> 
