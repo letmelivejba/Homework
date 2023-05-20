@@ -12,6 +12,11 @@ list.
 <head>
     <meta charset="UTF-8">
      <title>Function & Filters</title>
+     <style>
+input:invalid {
+    background-color: red;
+}
+</style>
 </head>
 <body>
         <?php
@@ -49,21 +54,24 @@ list.
 
         ];
 
-        function filterByPublished($books, $published) {
+        function filterByPublished($books,$operator = '==', $published = 2000) {
            $filteredBooks = [];
 
            foreach ($books as $book) {
-            if ($book['published'] === $published) {
-                $filteredBooks[] = $book;
-            }
+            eval("if (\$book['published'] $operator $published) \$filteredBooks[] = \$book;");
            }
          return $filteredBooks;
         }
 
     ?>
     <ul>
-        <?php foreach (filterByPublished($books, >= 2000) as $book) : ?> //di sya naggagana na irog sadi ang filter
-          
+        <form method="GET">
+            <input name="year" type="number" min="1900" max="2099" step="1" placeholder="Year"/>
+            <input name="operator" type="text" pattern="([><]{0}[=]{2})|([><]{1}[=]{1})|([><]{1})" placeholder="Operator"/>
+            <input type="submit" value="Search"/>
+        </form>
+        <?php foreach (filterByPublished($books, $_GET['operator'], $_GET['year']) as $book) : ?>
+
         <li>
                 <a href="<?= $book['wiki']; ?>"> 
                      <?= $book['name']; ?> (<?= $book['published'] ?>) - By <?=  $book['author'] ?>
@@ -73,4 +81,5 @@ list.
     </ul>
 
 </body>
+
 </html>
