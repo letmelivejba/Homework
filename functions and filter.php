@@ -53,16 +53,14 @@ list.
            $filteredBooks = [];
 
            foreach ($books as $book) {
-            if (eval("$book['published'] $operator $published")) {
-                $filteredBooks[] = $book;
-            }
+            eval("if (\$book['published'] $operator $published) \$filteredBooks[] = \$book;");
            }
          return $filteredBooks;
         }
 
     ?>
     <ul>
-        <?php foreach (filterByPublished($books, '>=', 2000) as $book) : ?> //di sya naggagana na irog sadi ang filter
+        <?php foreach (filterByPublished($books, '>=', 2000) as $book) : ?>
           
         <li>
                 <a href="<?= $book['wiki']; ?>"> 
