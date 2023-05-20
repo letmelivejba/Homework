@@ -66,7 +66,7 @@ input:invalid {
     ?>
     <ul>
         <form method="GET">
-            <input name="year" type="number" min="1900" max="2099" step="1" placeholder="Year"/>
+            <input name="year" type="number" min="1900" max="2023" step="1" placeholder="Year"/>
             <input name="operator" type="text" pattern="([><]{0}[=]{2})|([><]{1}[=]{1})|([><]{1})" placeholder="Operator"/>
             <input type="submit" value="Search"/>
         </form>
